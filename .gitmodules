@@ -49,3 +49,6 @@
 [submodule "bundle/fuzzyfinder"]
 	path = bundle/fuzzyfinder
 	url = https://github.com/vim-scripts/FuzzyFinder.git
+[submodule "bundle/conqueshell"]
+	path = bundle/conqueshell
+	url = https://github.com/vim-scripts/Conque-Shell.git
