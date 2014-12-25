@@ -19,7 +19,6 @@ set clipboard=unnamedplus
 ino jj <esc>
 cno jj <c-c>
 map <leader>td <Plug>TaskList
-map <leader>n :NERDTreeToggle<CR>
 map gd :RopeGotoDefinition<CR>
 map rn :RopeRename<CR>
 
@@ -40,5 +39,19 @@ au FileType python set omnifunc=pythoncomplete#Complete
 let g:SuperTabDefaultCompletionType = "context"
 set completeopt=menuone,longest,preview
 
-"NERDTree auto open
-autocmd VimEnter * NERDTree
+"Maximize vim window
+if has("gui_running")
+  set lines=999 columns=999
+else
+  if exists("+lines")
+    set lines=50
+  endif
+  if exists("+columns")
+    set columns=100
+  endif
+endif
+
+
+"Turn off sound
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
