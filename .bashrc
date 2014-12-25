@@ -65,7 +65,6 @@ alias .4='cd ../../../../'                  # Go back 4 directory levels
 alias .5='cd ../../../../../'               # Go back 5 directory levels
 alias .6='cd ../../../../../../'            # Go back 6 directory levels
 alias edit='subl'                           # edit:         Opens any file in sublime editor
-alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
 alias ~="cd ~"                              # ~:            Go Home
 alias c='clear'                             # c:            Clear terminal display
 alias which='type -all'                     # which:        Find executables
@@ -75,7 +74,6 @@ alias fix_stty='stty sane'                  # fix_stty:     Restore terminal set
 alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
 mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
 trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
-ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
 
 #   lr:  Full Recursive Directory Listing
@@ -110,24 +108,6 @@ alias make1mb='mkfile 1m ./1MB.dat'         # make1mb:      Creates a file of 1m
 alias make5mb='mkfile 5m ./5MB.dat'         # make5mb:      Creates a file of 5mb size (all zeros)
 alias make10mb='mkfile 10m ./10MB.dat'      # make10mb:     Creates a file of 10mb size (all zeros)
 
-#   cdf:  'Cd's to frontmost window of MacOS Finder
-#   ------------------------------------------------------
-    cdf () {
-        currFolderPath=$( /usr/bin/osascript <<EOT
-            tell application "Finder"
-                try
-            set currFolder to (folder of the front window as alias)
-                on error
-            set currFolder to (path to desktop folder as alias)
-                end try
-                POSIX path of currFolder
-            end tell
-EOT
-        )
-        echo "cd to \"$currFolderPath\""
-        cd "$currFolderPath"
-    }
-
 #   extract:  Extract most know archives with one command
 #   ---------------------------------------------------------
     extract () {
@@ -160,10 +140,6 @@ alias qfind="find . -name "                 # qfind:    Quickly search for file
 ff () { /usr/bin/find . -name "$@" ; }      # ff:       Find file under the current directory
 ffs () { /usr/bin/find . -name "$@"'*' ; }  # ffs:      Find file whose name starts with a given string
 ffe () { /usr/bin/find . -name '*'"$@" ; }  # ffe:      Find file whose name ends with a given string
-
-#   spotlight: Search for a file using MacOS Spotlight's metadata
-#   -----------------------------------------------------------
-    spotlight () { mdfind "kMDItemDisplayName == '$@'wc"; }
 
 
 #   ---------------------------
@@ -253,9 +229,6 @@ alias mountReadWrite='/sbin/mount -uw /'    # mountReadWrite:   For use when boo
 #   -----------------------------------------------------------------------------------
     alias cleanupLS="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
 
-#    screensaverDesktop: Run a screensaver on the Desktop
-#   -----------------------------------------------------------------------------------
-    alias screensaverDesktop='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine -background'
 
 #   ---------------------------------------
 #   8.  WEB DEVELOPMENT

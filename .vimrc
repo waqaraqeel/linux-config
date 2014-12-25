@@ -1,8 +1,3 @@
-"pathogen edits
-filetype off
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
-
 "code folding
 set foldmethod=indent
 set foldlevel=99
@@ -19,8 +14,6 @@ set clipboard=unnamedplus
 ino jj <esc>
 cno jj <c-c>
 map <leader>td <Plug>TaskList
-map gd :RopeGotoDefinition<CR>
-map rn :RopeRename<CR>
 
 "window movement
 map Wj <C-W>j<C-W>_
@@ -33,11 +26,6 @@ map WW <C-W>w<C-W>_
 syntax on
 filetype on
 filetype plugin indent on
-let g:pyflakes_use_quickfix = 0
-let g:pep8_map='<leader>8'
-au FileType python set omnifunc=pythoncomplete#Complete
-let g:SuperTabDefaultCompletionType = "context"
-set completeopt=menuone,longest,preview
 
 "Maximize vim window
 if has("gui_running")
