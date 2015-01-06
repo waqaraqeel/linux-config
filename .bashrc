@@ -91,13 +91,6 @@ alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\
 #   ------------------------------------------------------------
     showa () { /usr/bin/grep --color=always -i -a1 $@ ~/Library/init/bash/aliases.bash | grep -v '^\s*$' | less -FSRXc ; }
 
-#   bash completion: enables bash completion
-#   ----------------------------------------
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-    . `brew --prefix`/etc/bash_completion
-fi
-
-
 #   -------------------------------
 #   3.  FILE AND FOLDER MANAGEMENT
 #   -------------------------------
@@ -398,4 +391,4 @@ if ! shopt -oq posix; then
 fi
 
 alias g="gvim --remote"
-export PYTHONPATH=$PYTHONPATH:.:/home/wirate/pox
+export PYTHONPATH=.:/home/wirate/pox:/home/wirate/pyretic

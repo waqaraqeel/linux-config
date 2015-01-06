@@ -1,19 +1,24 @@
+"pathogen bundles
+execute pathogen#infect()
+
 "code folding
 set foldmethod=indent
 set foldlevel=99
 
 "gui options
-colorscheme xoria256
+colorscheme monokain
 set guioptions-=m
 set guioptions-=T
 set guioptions-=r
 set guioptions-=L
 set clipboard=unnamedplus
+set relativenumber
 
 "convencience keybindings
 ino jj <esc>
 cno jj <c-c>
-map <leader>td <Plug>TaskList
+nmap cp :CtrlP<CR>
+nmap <F9> :execute ':! '.runscript<CR>
 
 "window movement
 map Wj <C-W>j<C-W>_
@@ -43,4 +48,29 @@ endif
 "Turn off sound
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
-"test
+autocmd VimEnter * NERDTree
+autocmd VimEnter * SyntasticCheck
+
+
+" Commenting blocks of code.
+autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
+autocmd FileType sh,ruby,python   let b:comment_leader = '# '
+autocmd FileType conf,fstab       let b:comment_leader = '# '
+autocmd FileType tex              let b:comment_leader = '% '
+autocmd FileType mail             let b:comment_leader = '> '
+autocmd FileType vim              let b:comment_leader = '" '
+noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
+noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+
+
+" Error checking
+let g:syntastic_python_checkers = ["pyflakes"]
+nmap ec :SyntasticCheck<CR> :Errors<CR>
+nmap en :lnext<CR>
+nmap ep :lprev<CR>
+
+" Rope related
+let ropevim_vim_completion=1
+let ropevim_extended_complete=1
+nmap gd :RopeGotoDefinition<CR>
+nmap go :RopeFindOccurrences<CR>
