@@ -18,7 +18,7 @@ set relativenumber
 ino jj <esc>
 cno jj <c-c>
 nmap cp :CtrlP<CR>
-nmap <F9> :execute ':! '.runscript<CR>
+nmap <F9> :execute ':! '.runscript.' &'<CR>
 
 "window movement
 map Wj <C-W>j<C-W>_
@@ -68,9 +68,3 @@ let g:syntastic_python_checkers = ["pyflakes"]
 nmap ec :SyntasticCheck<CR> :Errors<CR>
 nmap en :lnext<CR>
 nmap ep :lprev<CR>
-
-" Rope related
-let ropevim_vim_completion=1
-let ropevim_extended_complete=1
-nmap gd :RopeGotoDefinition<CR>
-nmap go :RopeFindOccurrences<CR>
