@@ -1,12 +1,21 @@
-"pathogen bundles
+set nocompatible
+
+set autowrite
+set showcmd
+set incsearch
+set textwidth=80
+set number
+set numberwidth=5
+
+" pathogen bundles
 execute pathogen#infect()
 
-"code folding
+" code folding
 set foldmethod=indent
 set foldlevel=99
 
-"gui options
-colorscheme monokain
+" gui options
+colorscheme summerfruit
 set guioptions-=m
 set guioptions-=T
 set guioptions-=r
@@ -14,25 +23,30 @@ set guioptions-=L
 set clipboard=unnamedplus
 set relativenumber
 
-"convencience keybindings
+" convencience keybindings
 ino jj <esc>
 cno jj <c-c>
 nmap cp :CtrlP<CR>
-nmap <F9> :execute ':! '.runscript.' &'<CR>
+nmap <F6> :execute ':! '.runscript.' &'<CR>
 
-"window movement
-map Wj <C-W>j<C-W>_
-map Wk <C-W>k<C-W>_
-map Wl <C-W>l<C-W>_
-map Wh <C-W>h<C-W>_
-map WW <C-W>w<C-W>_
+" splits and movement
+nnoremap <leader><leader> <c-^>
+" just to override vim-latex setting <c-j>. I need my split movement!
+nnoremap<C-space> <Plug>IMAP_JumpForward
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+set splitbelow
+set splitright
 
-"IDE features
+" IDE features
 syntax on
 filetype on
-filetype plugin indent on
+filetype plugin on
+filetype indent on
 
-"Maximize vim window
+" Maximize vim window
 if has("gui_running")
   set lines=999 columns=999
 else
@@ -45,7 +59,7 @@ else
 endif
 
 
-"Turn off sound
+" Turn off sound
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 autocmd VimEnter * NERDTree
@@ -68,3 +82,8 @@ let g:syntastic_python_checkers = ["pyflakes"]
 nmap ec :SyntasticCheck<CR> :Errors<CR>
 nmap en :lnext<CR>
 nmap ep :lprev<CR>
+
+
+" Latex settings
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor='latex'
