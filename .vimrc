@@ -3,7 +3,6 @@ set nocompatible
 set autowrite
 set showcmd
 set incsearch
-set textwidth=80
 set number
 set numberwidth=5
 
