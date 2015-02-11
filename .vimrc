@@ -86,3 +86,8 @@ nmap ep :lprev<CR>
 " Latex settings
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor='latex'
+
+" Spelling help
+set spell
+nmap sn ]s
+nmap sp [s
