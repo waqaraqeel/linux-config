@@ -14,18 +14,21 @@ set foldmethod=indent
 set foldlevel=99
 
 " gui options
-colorscheme summerfruit
+colorscheme solarized
+set background=light
 set guioptions-=m
 set guioptions-=T
 set guioptions-=r
 set guioptions-=L
 set clipboard=unnamedplus
 set relativenumber
+set guifont=Source\ Code\ Pro\ 12
 
 " convencience keybindings
 ino jj <esc>
 cno jj <c-c>
-nmap cp :CtrlP<CR>
+nmap cg :CtrlP<CR>
+nmap cp :CtrlPBufTag<CR>
 nmap <F6> :execute ':! '.runscript.' &'<CR>
 
 " splits and movement
@@ -77,7 +80,7 @@ noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<
 
 
 " Error checking
-let g:syntastic_python_checkers = ["pyflakes"]
+let g:syntastic_python_checkers = ["python", "pylint"]
 nmap ec :SyntasticCheck<CR> :Errors<CR>
 nmap en :lnext<CR>
 nmap ep :lprev<CR>
