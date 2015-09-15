@@ -47,17 +47,22 @@ syntax on
 filetype on
 filetype plugin on
 filetype indent on
+set smartindent
+set nowrap
+set tabstop=4
+set softtabstop=4
+set expandtab
 
 " Maximize vim window
 if has("gui_running")
-  set lines=999 columns=999
+		set lines=999 columns=999
 else
-  if exists("+lines")
-    set lines=50
-  endif
-  if exists("+columns")
-    set columns=100
-  endif
+		if exists("+lines")
+				set lines=50
+		endif
+		if exists("+columns")
+				set columns=100
+		endif
 endif
 
 
@@ -66,6 +71,7 @@ set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 autocmd VimEnter * NERDTree
 autocmd VimEnter * SyntasticCheck
+au BufWrite * :Autoformat
 
 
 " Commenting blocks of code.
@@ -81,16 +87,8 @@ noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<
 
 " Error checking
 let g:syntastic_python_checkers = ["python", "pylint"]
+let g:syntastic_javascript_checkers = ["jshint"]
+let g:syntastic_html_checkers = ["tidy"]
 nmap ec :SyntasticCheck<CR> :Errors<CR>
 nmap en :lnext<CR>
 nmap ep :lprev<CR>
-
-
-" Latex settings
-set grepprg=grep\ -nH\ $*
-let g:tex_flavor='latex'
-
-" Spelling help
-set spell
-nmap sn ]s
-nmap sp [s
